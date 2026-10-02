@@ -477,7 +477,7 @@ let baseDePreguntasNivel1 =[
         pregunta:"¿En qué fecha se firmó el acta de Independencia de Estados Unidos?",
         imagen:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Declaration_of_Independence_%281819%29%2C_by_John_Trumbull.jpg/350px-Declaration_of_Independence_%281819%29%2C_by_John_Trumbull.jpg",
         respuesta: "4 de Julio de 1776",
-        distractores: ["28 de Mayo de 1770", "16 de Febrero de 1774", "4 de Julio de 1776"],
+        distractores: ["28 de Mayo de 1770", "16 de Febrero de 1774", "12 de Octubre de 1492"],
         pista: "Ocurrió entre 1775 y 1783, finalizando con la derrota británica en la batalla de Yorktown y la firma del Tratado de París",
         pistaImg:"https://enciclopediadehistoria.com/wp-content/uploads/2019/07/batalla-de-yorktown.jpg",
         imagenFinalizado: "https://i.ibb.co/L5z84Qj/bmo-bailando.png",

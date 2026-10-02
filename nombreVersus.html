@@ -1,64 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de preguntas</title>
+    <title>Modo Versus - Registro de Jugadores</title>
+    <meta name="description" content="Modo Versus - Ingresa los nombres de los dos jugadores para comenzar la batalla">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Kanit:wght@700;900&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="/estiloJP.css">
-    <link rel="Website Icon" href="/imagenes/bmo.webp">
+    <link rel="stylesheet" href="estiloJP.css">
+    <link rel="icon" type="image/webp" href="imagenes/bmo.webp">
 
-    <script src="/basePreguntas.js"></script> 
-    <script defer src="/index.js"></script> 
-
-    <audio src="/julia-133094.mp3" autoplay="autoplay" loop="loop"></audio>       
-  
+    <script src="soundManager.js"></script>
+    <script src="capturarNombres.js"></script>
 </head>
-
 <body>
     
     <div class="menuVersus">
-        <div class="nombres">
-            <form id="formulario">
-                <label for="jugador1">Jugador 1:</label>
-                <input type="text" id="jugador1" placeholder="Nombre del Jugador 1" required>
-        
-                <label for="jugador2">Jugador 2:</label>
-                <input type="text" id="jugador2" placeholder="Nombre del Jugador 2" required>
-                <br><br>
-                <div id="outer">
-                    <div class="button_slide slide_right">
-                        <button class="botonRegresar2" type="button" onclick="almacenarYAvanzar()"  onmousedown="sonido.play()">Jugar</button>
-                    </div>
-                </div>
-        
-            </form>
-        
-            <script src="/capturarNombres.js"></script>
-        </div>
+        <h1 class="main-title">⚔️ Modo Versus</h1>
+        <p class="main-subtitle">Ingresen sus nombres para comenzar la batalla</p>
 
-        <div id="outer">
-            <div class="button_slide slide_right">
-                <a class="botonRegresar" href="/pagPrincipal.html" onmousedown="sonido.play()">Menú Principal</a>
-            </div>
+        <div class="form-card">
+            <form id="formulario" onsubmit="event.preventDefault(); almacenarYAvanzar();">
+
+                <div class="form-group">
+                    <label for="jugador1">🔵 Jugador 1</label>
+                    <input type="text" id="jugador1" placeholder="Nombre del Jugador 1" required autocomplete="off" maxlength="20">
+                </div>
+
+                <div class="form-group" style="margin-top: 4px;">
+                    <label for="jugador2">🟣 Jugador 2</label>
+                    <input type="text" id="jugador2" placeholder="Nombre del Jugador 2" required autocomplete="off" maxlength="20">
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 8px;">
+                    <button class="btn-game" type="button" id="btn-comenzar" onclick="almacenarYAvanzar()">
+                        ⚔️ Comenzar Duelo
+                    </button>
+                    <a class="btn-secondary-game" href="pagPrincipal.html" onclick="SoundManager.playClick()" style="justify-content: center;">
+                        ⬅️ Volver al Menú
+                    </a>
+                </div>
+
+            </form>
         </div>
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            SoundManager.init("julia-133094.mp3");
+
+            // Pre-fill from localStorage if previously set
+            const j1 = localStorage.getItem("jugador1");
+            const j2 = localStorage.getItem("jugador2");
+            if (j1) document.getElementById("jugador1").value = j1;
+            if (j2) document.getElementById("jugador2").value = j2;
+
+            // Allow pressing Enter to submit
+            document.getElementById("jugador1").addEventListener("keydown", (e) => {
+                if (e.key === "Enter") document.getElementById("jugador2").focus();
+            });
+        });
+    </script>
 </body>
-</html>
-<script>
-    var sonido = new Audio();
-    sonido.src = "sonido.mp3";
-  </script>
 </html>
